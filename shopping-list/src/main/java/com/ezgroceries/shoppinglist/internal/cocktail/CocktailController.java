@@ -3,15 +3,18 @@ package com.ezgroceries.shoppinglist.internal.cocktail;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/cocktails")
 public class CocktailController {
     @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
     public List<CocktailResource> get(@RequestParam String search) {
         return getDummyResources();
     }

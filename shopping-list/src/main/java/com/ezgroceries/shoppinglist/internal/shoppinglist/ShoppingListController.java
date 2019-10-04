@@ -5,11 +5,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -23,18 +24,19 @@ public class ShoppingListController {
     }
 
     @GetMapping(value = "/shopping-lists/{shoppingListId}")
-    public ShoppingListResource findByName(@PathVariable UUID shoppingListId) {
+    public ShoppingListResource findByName(@PathVariable String shoppingListId) {
         return getDummyShoppingList();
     }
 
     @PostMapping(value = "/shopping-lists")
-    public ShoppingListResource createList(@RequestParam String name) {
-        return new ShoppingListResource(UUID.randomUUID(), "Stephanie's birthday", Collections.EMPTY_LIST);
+    @ResponseStatus(code = HttpStatus.CREATED)
+    public ShoppingListResource createList(@RequestBody ShoppingListResource newShoppingList) {
+        return new ShoppingListResource(UUID.randomUUID(), newShoppingList.getName(), Collections.EMPTY_LIST);
     }
 
-    @PostMapping(value = "/shopping-lists/{shoppingListId}")
-    public List<UUID> addCocktails(@PathVariable UUID shoppingListId, @RequestParam List<UUID> cocktails) {
-        return DUMMY_COCKTAILS;
+    @PostMapping(value = "/shopping-lists/{shoppingListId}/cocktails")
+    public List<CocktailResource> addCocktails(@PathVariable UUID shoppingListId, @RequestBody List<CocktailResource> cocktails) {
+        return cocktails;
     }
 
     private List<ShoppingListResource> getDummyShoppingLists() {
