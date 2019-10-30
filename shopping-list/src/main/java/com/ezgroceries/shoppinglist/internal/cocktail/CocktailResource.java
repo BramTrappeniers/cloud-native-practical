@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.UUID;
 
 public class CocktailResource {
-    private UUID cocktailId;
+    private String cocktailId;
     private String name;
     private String glass;
     private String instructions;
@@ -12,7 +12,7 @@ public class CocktailResource {
     private List<String> ingredients;
 
     public CocktailResource(String cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
-        if(cocktailId == null) {this.cocktailId = UUID.randomUUID();} else {this.cocktailId = UUID.fromString(cocktailId);}
+        this.cocktailId = cocktailId;
         this.name = name;
         this.glass = glass;
         this.instructions = instructions;
@@ -20,11 +20,11 @@ public class CocktailResource {
         this.ingredients = ingredients;
     }
 
-    public UUID getCocktailId() {
+    public String getCocktailId() {
         return cocktailId;
     }
 
-    public void setCocktailId(UUID cocktailId) {
+    public void setCocktailId(String cocktailId) {
         this.cocktailId = cocktailId;
     }
 
