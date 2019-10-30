@@ -11,8 +11,8 @@ public class CocktailResource {
     private String image;
     private List<String> ingredients;
 
-    public CocktailResource(UUID cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
-        this.cocktailId = cocktailId;
+    public CocktailResource(String cocktailId, String name, String glass, String instructions, String image, List<String> ingredients) {
+        if(cocktailId == null) {this.cocktailId = UUID.randomUUID();} else {this.cocktailId = UUID.fromString(cocktailId);}
         this.name = name;
         this.glass = glass;
         this.instructions = instructions;
