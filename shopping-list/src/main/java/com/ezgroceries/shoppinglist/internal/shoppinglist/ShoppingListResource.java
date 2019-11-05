@@ -7,9 +7,9 @@ import java.util.UUID;
 public class ShoppingListResource {
     private UUID shoppingListId;
     private String name;
-    private List<UUID> cocktailResourceList;
+    private List<String> cocktailResourceList;
 
-    public ShoppingListResource(UUID shoppingListId, String name, List<UUID> cocktailResourceList) {
+    public ShoppingListResource(UUID shoppingListId, String name, List<String> cocktailResourceList) {
         this.shoppingListId = shoppingListId;
         this.name = name;
         this.cocktailResourceList = cocktailResourceList;
@@ -31,11 +31,11 @@ public class ShoppingListResource {
         this.name = name;
     }
 
-    public List<UUID> getCocktailResourceList() {
+    public List<String> getCocktailResourceList() {
         return cocktailResourceList;
     }
 
-    public void setCocktailResourceList(List<UUID> cocktailResourceList) {
+    public void setCocktailResourceList(List<String> cocktailResourceList) {
         this.cocktailResourceList = cocktailResourceList;
     }
 }
