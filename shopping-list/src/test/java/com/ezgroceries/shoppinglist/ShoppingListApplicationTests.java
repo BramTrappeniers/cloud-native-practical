@@ -2,6 +2,7 @@ package com.ezgroceries.shoppinglist;
 
 import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
 import static org.hamcrest.Matchers.is;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -13,8 +14,10 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBClient;
 import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBResponse;
 import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBResponse.DrinkResource;
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailResource;
+import com.ezgroceries.shoppinglist.internal.shoppinglist.ShoppingListResource;
+import com.ezgroceries.shoppinglist.internal.shoppinglist.ShoppingListService;
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import org.junit.Before;
 import org.junit.Test;
@@ -37,6 +40,9 @@ public class ShoppingListApplicationTests {
 
     @MockBean
     private CocktailDBClient cocktailDBClient;
+
+    @MockBean
+    private ShoppingListService shoppingListService;
 
     private CocktailDBResponse mockCocktailDbResponse() {
         CocktailDBResponse cocktailDBResponse = new CocktailDBResponse();
@@ -67,9 +73,22 @@ public class ShoppingListApplicationTests {
         return cocktailDBResponse;
     }
 
+    private List<ShoppingListResource> mockAllShoppingLists() {
+        ShoppingListResource shoppingListResource1 = new ShoppingListResource(UUID.randomUUID(), "Stephanie's birthday", Arrays.asList("ingredient1", "ingredient2"));
+        ShoppingListResource shoppingListResource2 = new ShoppingListResource(UUID.randomUUID(), "My Birthday", Arrays.asList("ingredientX", "ingredientY"));
+        return Arrays.asList(shoppingListResource1, shoppingListResource2);
+    }
+
+    private ShoppingListResource mockGetShoppingListById() {
+        return new ShoppingListResource(UUID.randomUUID(), "Stephanie's birthday", Arrays.asList("ingredient1", "ingredient2"));
+    }
+
     @Before
     public void init() {
         when(cocktailDBClient.searchCocktails("Russian")).thenReturn(mockCocktailDbResponse());
+        when(shoppingListService.findAllShoppingLists()).thenReturn(mockAllShoppingLists());
+        when(shoppingListService.findShoppingListById(any(UUID.class))).thenReturn(mockGetShoppingListById());
+        when(shoppingListService.create(any(ShoppingListResource.class))).thenReturn(mockGetShoppingListById());
     }
 
     @Test
@@ -100,8 +119,7 @@ public class ShoppingListApplicationTests {
         mockMvc.perform(post("/shopping-lists/97c8e5bd-5353-426e-b57b-69eb2260ace3/cocktails")
                             .contentType(MediaType.APPLICATION_JSON)
                             .content("[{\"cocktailId\": \"23b3d85a-3928-41c0-a533-6538a71e17c4\"}, {\"cocktailId\": \"d615ec78-fe93-467b-8d26-5d26d8eab073\"}]"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].cocktailId", is("23b3d85a-3928-41c0-a533-6538a71e17c4")));
+                .andExpect(status().isOk());
     }
 
     @Test

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.UUID;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -15,6 +16,10 @@ public class ShoppingListEntity {
     @Id
     private UUID id;
     private String name;
+    @OneToMany
+    @JoinTable( name="COCKTAIL_SHOPPING_LIST",
+            joinColumns = @JoinColumn(name="SHOPPING_LIST_ID"),
+            inverseJoinColumns = @JoinColumn(name = "COCKTAIL_ID"))
     private List<CocktailEntity> cocktails;
 
     public UUID getId() {
