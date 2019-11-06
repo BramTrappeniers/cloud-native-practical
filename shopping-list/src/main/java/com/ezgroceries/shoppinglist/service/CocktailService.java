@@ -1,10 +1,13 @@
-package com.ezgroceries.shoppinglist.internal.cocktail;
+package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBResponse.DrinkResource;
+import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.dao.external.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.dao.external.CocktailDBResponse.DrinkResource;
+import com.ezgroceries.shoppinglist.model.CocktailEntity;
+import com.ezgroceries.shoppinglist.dao.CocktailRepository;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
@@ -18,7 +21,7 @@ public class CocktailService {
         this.cocktailRepository = cocktailRepository;
     }
 
-    public List<CocktailResource> mergeCocktails(List<CocktailDBResponse.DrinkResource> drinks) {
+    public List<CocktailResource> mergeCocktails(List<DrinkResource> drinks) {
         //Get all the idDrink attributes
         List<String> ids = drinks.stream().map(CocktailDBResponse.DrinkResource::getIdDrink).collect(Collectors.toList());
 

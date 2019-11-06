@@ -1,8 +1,11 @@
-package com.ezgroceries.shoppinglist.internal.shoppinglist;
+package com.ezgroceries.shoppinglist.service;
 
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailEntity;
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailRepository;
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailResource;
+import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.model.CocktailEntity;
+import com.ezgroceries.shoppinglist.dao.CocktailRepository;
+import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.model.ShoppingListEntity;
+import com.ezgroceries.shoppinglist.dao.ShoppingListRepository;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;

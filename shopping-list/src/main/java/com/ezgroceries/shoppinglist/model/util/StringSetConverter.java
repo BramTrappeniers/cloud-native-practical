@@ -1,4 +1,4 @@
-package com.ezgroceries.shared;
+package com.ezgroceries.shoppinglist.model.util;
 
 import java.util.Arrays;
 import java.util.HashSet;

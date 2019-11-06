@@ -1,6 +1,5 @@
-package com.ezgroceries.shoppinglist.internal.shoppinglist;
+package com.ezgroceries.shoppinglist.dto;
 
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailResource;
 import java.util.List;
 import java.util.UUID;
 

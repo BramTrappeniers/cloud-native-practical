@@ -1,8 +1,8 @@
-package com.ezgroceries.shoppinglist.internal.shoppinglist;
+package com.ezgroceries.shoppinglist.controller;
 
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailResource;
-import java.util.Arrays;
-import java.util.Collections;
+import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.dto.CocktailResource;
+import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.http.HttpStatus;

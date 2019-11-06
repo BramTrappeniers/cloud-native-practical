@@ -1,5 +1,6 @@
-package com.ezgroceries.shoppinglist.internal.cocktail;
+package com.ezgroceries.shoppinglist.dao;
 
+import com.ezgroceries.shoppinglist.model.CocktailEntity;
 import java.util.List;
 import java.util.UUID;
 import org.springframework.data.repository.CrudRepository;

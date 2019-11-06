@@ -11,11 +11,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBClient;
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBResponse;
-import com.ezgroceries.shoppinglist.internal.cocktail.CocktailDBResponse.DrinkResource;
-import com.ezgroceries.shoppinglist.internal.shoppinglist.ShoppingListResource;
-import com.ezgroceries.shoppinglist.internal.shoppinglist.ShoppingListService;
+import com.ezgroceries.shoppinglist.dao.external.CocktailDBClient;
+import com.ezgroceries.shoppinglist.dao.external.CocktailDBResponse;
+import com.ezgroceries.shoppinglist.dao.external.CocktailDBResponse.DrinkResource;
+import com.ezgroceries.shoppinglist.dto.ShoppingListResource;
+import com.ezgroceries.shoppinglist.service.ShoppingListService;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;

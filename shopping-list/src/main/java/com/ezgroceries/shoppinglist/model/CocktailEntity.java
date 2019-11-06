@@ -1,6 +1,6 @@
-package com.ezgroceries.shoppinglist.internal.cocktail;
+package com.ezgroceries.shoppinglist.model;
 
-import com.ezgroceries.shared.StringSetConverter;
+import com.ezgroceries.shoppinglist.model.util.StringSetConverter;
 import java.util.Set;
 import java.util.UUID;
 import javax.persistence.Convert;
